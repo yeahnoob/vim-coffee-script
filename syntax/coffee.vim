@@ -29,7 +29,7 @@ syn match coffeeConditional /\<\%(if\|else\|unless\|switch\|when\|then\)\>/
 \                           display
 hi def link coffeeConditional Conditional
 
-syn match coffeeException /\<\%(try\|catch\|finally\)\>/ display
+syn match coffeeException /\<\%(try\|catch\|finally\|Error\)\>/ display
 hi def link coffeeException Exception
 
 syn match coffeeKeyword /\<\%(new\|in\|of\|by\|and\|or\|not\|is\|isnt\|class\|extends\|super\|do\)\>/
@@ -45,7 +45,7 @@ hi def link coffeeOperator Operator
 " The first case matches symbol operators only if they have an operand before.
 syn match coffeeExtendedOp /\%(\S\s*\)\@<=[+\-*/%&|\^=!<>?.]\{-1,}\|[-=]>\|--\|++\|:/
 \                          display
-syn match coffeeExtendedOp /\<\%(and\|or\)=/ display
+syn match coffeeExtendedOp /\<\%(and\|or\|is\|isnt\|not\)\>/ display
 hi def link coffeeExtendedOp coffeeOperator
 
 " This is separate from `coffeeExtendedOp` to help differentiate commas from
@@ -67,13 +67,14 @@ hi def link coffeeSpecialVar Special
 syn match coffeeSpecialIdent /@\%(\%(\I\|\$\)\%(\i\|\$\)*\)\?/ display
 hi def link coffeeSpecialIdent Identifier
 
-" A class-like name that starts with a capital letter
-syn match coffeeObject /\<\u\w*\>/ display
-hi def link coffeeObject Structure
-
 " A constant-like name in SCREAMING_CAPS
 syn match coffeeConstant /\<\u[A-Z0-9_]\+\>/ display
 hi def link coffeeConstant Constant
+
+
+" A class-like name that starts with a capital letter
+syn match coffeeObject /\<\%(Object\|Function\|Boolean\|Symbol\|EvalError\|InternalError\|RangeError\|ReferenceError\|StopIteration\|SyntaxError\|TypeError\|URIError\|Number\|Math\|Date\|String\|RegExp\|Array\|Float32Array\|Float64Array\|Int16Array\|Int32Array\|Int8Array\|Uint16Array\|Uint32Array\|Uint8Array\|Uint8ClampedArray\|ParallelArray\|Map\|Set\|WeakMap\|WeakSet\|ArrayBuffer\|DataView\|JSON\|Iterator\|Generator\|Promise\|Reflect\|Proxy\)\>/ display
+hi def link coffeeObject Structure
 
 " A variable name
 syn cluster coffeeIdentifier contains=coffeeSpecialVar,coffeeSpecialIdent,
