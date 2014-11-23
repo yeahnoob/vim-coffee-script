@@ -196,6 +196,9 @@ syn region coffeeBrackets matchgroup=coffeeBracket start=/\[/ end=/\]/
 syn region coffeeParens matchgroup=coffeeParen start=/(/ end=/)/
 \                       contains=@coffeeAll
 
+syn match coffeeFunctions /@\?\%(\I\|\$\)\%(\i\|\$\)*\s*\ze=\s*\((.*)\)\?\s*->/
+hi def link coffeeFunctions Function
+
 " These are highlighted the same as commas since they tend to go together.
 hi def link coffeeBlock coffeeSpecialOp
 hi def link coffeeBracket coffeeBlock
