@@ -116,6 +116,14 @@ hi def link coffeeReservedError Error
 syn match coffeeObjAssign /@\?\%(\I\|\$\)\%(\i\|\$\)*\s*\ze::\@!/ contains=@coffeeIdentifier display
 hi def link coffeeObjAssign Identifier
 
+" A function definition
+syn match coffeeFunction /@\?\I.*\w\+\ze\s*=\s*\((.\{-})\)\=\s*\(=>\|->\)/ display
+hi def link coffeeFunction coffeeStatement
+
+" A method definition
+syn match coffeeMethod /@\?\I.*\w\+\ze\s*:\s*\((.\{-})\)\=\s*\(=>\|->\)/ display
+hi def link coffeeMethod coffeeObjAssign
+
 syn keyword coffeeTodo TODO FIXME XXX contained
 hi def link coffeeTodo Todo
 
@@ -218,7 +226,7 @@ syn cluster coffeeAll contains=coffeeStatement,coffeeRepeat,coffeeConditional,
 \                              coffeeHeredoc,coffeeSpaceError,
 \                              coffeeSemicolonError,coffeeDotAccess,
 \                              coffeeProtoAccess,coffeeCurlies,coffeeBrackets,
-\                              coffeeParens
+\                              coffeeParens,coffeeFunction,coffeeMethod
 
 if !exists('b:current_syntax')
   let b:current_syntax = 'coffee'
